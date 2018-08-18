@@ -77,11 +77,12 @@ public class WagonCounter {
             }
             str += "]}";
             size++;
-            String response = sendPost("http://localhost:8080/train", str);
+            String server = System.getenv("server");
+            String response = sendPost(server + "/train", str);
             JsonParser parser = new JsonParser();
             JsonObject body = parser.parse(response).getAsJsonObject();
             int id = body.get("id").getAsInt();
-            String url = "http://localhost:8080/train?id="+id;
+            String url = server + "/train?id="+id;
             long now = System.currentTimeMillis();
             while ((System.currentTimeMillis()-now)<2000){
 
@@ -99,7 +100,6 @@ public class WagonCounter {
         }
 
     }
-
 
     @RequestMapping(value = "/train", method = RequestMethod.POST)
     public ResponseEntity<String> createTrain(@RequestBody String body){
