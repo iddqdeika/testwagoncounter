@@ -33,7 +33,7 @@ public class WagonCounter {
     @Autowired
     private TrainRepo trainRepo;
 
-    /*
+    /**
     @RequestMapping(name = "/")
     public ResponseEntity<String> getWagons(){
 
